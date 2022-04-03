@@ -6,6 +6,16 @@ route = ""
 workers_dev = true
 compatibility_date = "2022-04-03"
 
+kv_namespaces = [
+    { binding = "REDIS", id = "844d1792a76d440a9b7e1ce3494aaa8f", preview_id = "844d1792a76d440a9b7e1ce3494aaa8f" }
+]
+
+[env.dev.triggers]
+crons = ["* * * * *"]
+
+[triggers]
+crons = ["* * * * *"]
+
 [build]
 command = "npm install && npm run build"
 [build.upload]
