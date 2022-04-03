@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 
-const baseURL = 'https://wild-sky-2ea8.tiny-script.workers.dev';
+const baseURL = 'server.tiny-script.workers.dev';
 // const baseURL = 'http://127.0.0.1:8787';
 const getURL = `${baseURL}/api/KV-get-data`;
 const setURL = `${baseURL}/api/KV-set-data`;
