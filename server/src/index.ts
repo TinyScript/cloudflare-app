@@ -5,7 +5,13 @@ addEventListener('fetch', (event) => {
   console.log(pathname);
   if (pathname.startsWith("/api")) {
     return event.respondWith(new Response(JSON.stringify({ pathname }), {
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": 'true',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
+      },
     }));
   }
 

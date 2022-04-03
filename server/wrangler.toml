@@ -1,7 +1,7 @@
 name = "server"
 type = "javascript"
 zone_id = ""
-account_id = ""
+account_id = "eddd7662cef6fe1984de2142084e7da0"
 route = ""
 workers_dev = true
 compatibility_date = "2022-04-03"
