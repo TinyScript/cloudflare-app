@@ -16,10 +16,12 @@ export async function handleRequest(request: Request): Promise<Response> {
   const { pathname, search } = new URL(request.url);
   if (pathname.startsWith("/api/KV-set-data")) {
     try {
-      search.replace('?', '').split('&').forEach((pair) => {
+      const data = search.replace('?', '').split('&');
+      const promiseList = data.map(async (pair) => {
         const [key, value] = pair.split('=');
-        REDIS.put(key, value);
-      }, {})
+        return await REDIS.put(key, value);
+      })
+      await Promise.all(promiseList);
       return createResponse('设置成功');
     } catch(e) {
       return createResponse('设置失败');

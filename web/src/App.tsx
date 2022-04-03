@@ -9,16 +9,17 @@ const setURL = `${baseURL}/api/KV-set-data`;
 function App() {
   const [kv, setKv] = useState<string>('');
   const [value, setValue] = useState<string>('');
-  const setData = () => {
-    return axios.get(setURL, { params: { value } });
+  const setData = async () => {
+    await axios.get(setURL, { params: { value } });
+    await getData();
   }
-  const getData = () => {
-    return axios.get(getURL);
+  const getData = async() => {
+    const { data } = await axios.get(getURL);
+    setKv(data);
   }
 
   const initData = async () => {
-    const { data } = await getData();
-    setKv(data);
+    await getData();
   }
 
   useEffect(() => {
