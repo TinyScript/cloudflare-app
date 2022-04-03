@@ -1,3 +1,3 @@
 export async function scheduledEvent (scheduledTime: number): Promise<void> {
-    Promise.resolve(REDIS.put('value', String(scheduledTime)));
+    await REDIS.put('value', String(Math.floor(Math.random() * 10000000)));
 }
