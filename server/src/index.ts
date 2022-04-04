@@ -6,6 +6,5 @@ addEventListener('fetch', (event) => {
 })
 
 addEventListener('scheduled', event => {
-  console.log(1111111233)
   event.waitUntil(scheduledEvent(event.scheduledTime));
 });

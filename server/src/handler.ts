@@ -1,5 +1,3 @@
-/// import d from './global.d.ts';
-
 function createResponse(data: string) {
   return new Response(data, {
     headers: {
