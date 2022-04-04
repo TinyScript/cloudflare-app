@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { registerRoute } from 'workbox-routing';
 import {
   NetworkFirst,
@@ -9,6 +10,9 @@ import {
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 // Used to limit entries in cache, remove entries after a certain period of time
 import { ExpirationPlugin } from 'workbox-expiration';
+
+import { precacheAndRoute, matchPrecache } from 'workbox-precaching';
+import { setCatchHandler } from 'workbox-routing';
 
 // Cache page navigations (html) with a Network First strategy
 registerRoute(
@@ -68,3 +72,16 @@ registerRoute(
     ],
   }),
 );
+
+// Ensure your build step is configured to include /offline.html as part of your precache manifest.
+precacheAndRoute(self.__WB_MANIFEST);
+
+// Catch routing errors, like if the user is offline
+setCatchHandler(async ({ event }) => {
+  // Return the precached offline page if a document is being requested
+  if (event.request.destination === 'document') {
+    return matchPrecache('/offline.html');
+  }
+
+  return Response.error();
+});
